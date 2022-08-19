@@ -9,15 +9,14 @@ const BASE_URL = 'https://api.themoviedb.org'
 const API_KEY = import.meta.env.VITE_THE_MOVIE_API_KEY
 
 
-
-
 /**
  * Get Popular Movies
  */
 
-const getPopularMovies = async ({ queryKey}) => {
+const getPopularMovies = async () => {
     const res = await axios.get(`${BASE_URL}/3/movie/popular?api_key=${API_KEY}`)
-    console.log('result******', res.data.title)
+
+    return res.data.results
 }
 
 // eslint-disable-next-line 
