@@ -1,17 +1,17 @@
-import PopularMovies from '../components/PopularMovies'
+import Movies from '../components/Movies'
 import usePopularMovies from '../hooks/usePopularMovies'
 
 
 // styles
 import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+import Alert from 'react-bootstrap/Alert'
+
 
 
 const PopularMoviesPage = () => {
-    const { data: popularMovies, error, isError, isLoading, isSuccess } = usePopularMovies()
+    const { data: movies, error, isError, isLoading, isSuccess } = usePopularMovies()
 
-	console.log('POPULAR MOVIES: ', popularMovies)
+	console.log('POPULAR MOVIES: ', movies)
 
   	return (
 		<Container className="py-3">
@@ -25,9 +25,10 @@ const PopularMoviesPage = () => {
 					<p>{error.message}</p>
 				</Alert>)
 			}
-				{popularMovies &&  ( 
-					<PopularMovies popularMovies={popularMovies} />	
-				)}
+
+			{movies &&  ( 
+				<Movies movies={movies} />	
+			)}
 
 
 		
