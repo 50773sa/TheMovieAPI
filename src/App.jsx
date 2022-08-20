@@ -19,7 +19,7 @@ function App() {
 				<Route path="*" element={<NotFound />} />
 				<Route path="/popular-movies" element={<PopularMovies />} />
 				<Route path="/top-rated-movies" element={<TopRatedMovies />} />
-				<Route path="/movies/{movieId}" element={<ReadMore />} />
+				<Route path="/movies/:id" element={<ReadMore />} />
 			</Routes>
 
 			<ReactQueryDevtools position='bottom-left' />
