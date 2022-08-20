@@ -24,7 +24,12 @@ const Movies = ({ movies }) => {
 						<Card.Title>{movie.title}</Card.Title>
 						<Card.Text className="d-flex justify-content-between">
 							⭐️ {movie.vote_average}
-							<Button as={Link} to={`/movies/${movie.id}`} variant="primary">Read more</Button>
+							<Button 
+								as={Link} 
+								to={`/movies/${movie.id}`} 
+								variant="primary"
+								> Read more
+							</Button>
 						</Card.Text>
 					</Card.Body>
 				</Card>

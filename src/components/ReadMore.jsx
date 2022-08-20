@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 
 
-const ReadMore = ({ moreInfo,  }) => {
+const ReadMore = ({ moreInfo }) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'
 	
@@ -29,15 +29,16 @@ const ReadMore = ({ moreInfo,  }) => {
 							⭐️ {moreInfo.vote_average}
 						</Card.Subtitle>
 
-						<h5>Actors</h5>
+						<Card.Subtitle>Actors</Card.Subtitle>
+
 						<>
-							{moreInfo.credits.cast.map((actor, i )=> (
+							{moreInfo.credits.cast.map((person, i )=> (
 								<div key={i}>
 									{/* <Image thumbnail={true} roundedCircle={true} src={imageUrl + actor.profile_path} / > */}
 									<Card.Text 
 										as={Link} 
-										to={`/actor/${actor.id}`}
-										> {actor.name} as {actor.character}
+										to={`/person/${person.id}`}
+									> 	{person.name} as {person.character}
 									</Card.Text>{/* //!Byta ut till Card.Link och href?? */}
 								</div>
 							))}

@@ -12,7 +12,6 @@ const ReadMorePage = () => {
     const { id } = useParams() // för att den ska veta vilket id den ska hämta
     const { data: moreInfo, error, isError, isLoading, isSuccess } = useReadMore(id)
 
-	console.log('More INFO: ', moreInfo)
 
   	return (
 		<Container className="py-3">
