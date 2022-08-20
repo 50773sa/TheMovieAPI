@@ -25,7 +25,7 @@ const get = async (endpoint) => {
 
 const getPopularMovies = async () => {
 
-    return get(`/3/movie/popular?api_key=${API_KEY}&page=1`)
+    return get(`/3/movie/popular?api_key=${API_KEY}&page=1?include_adult=false`)
 
 }
 
@@ -35,7 +35,7 @@ const getPopularMovies = async () => {
 
  const getTopRatedMovies = async () => {
 
-    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1`)
+    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1?include_adult=false`)
 
 }
 
@@ -45,13 +45,16 @@ const getPopularMovies = async () => {
 
  const getReadMore = async (movieId) => {
 
-    const info = get(`/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=credits`)
-    console.log('MORE INFO', info   )
+    return  get(`/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=credits`)
+}
 
+/**
+ * Get Person
+ */
 
-    return info
+ const getPerson = async (personId) => {
 
-
+    return  get(`/3/person/${personId}?api_key=${API_KEY}&append_to_response=credits`)
 }
 
 // eslint-disable-next-line 
@@ -59,4 +62,5 @@ export default {
     getPopularMovies,
     getTopRatedMovies,
     getReadMore,
+    getPerson,
 }
