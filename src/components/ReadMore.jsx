@@ -2,9 +2,10 @@
 // styles
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
+import { Link } from 'react-router-dom'
 
 
 
@@ -21,14 +22,23 @@ const ReadMore = ({ moreInfo,  }) => {
 					<Card.Img variant="top" src={imageUrl + moreInfo.poster_path}/>
 					<Card.Body>
 						<Card.Title>{moreInfo.title}</Card.Title>
+						<Card.Text>{moreInfo.tagline}</Card.Text>
 						<Card.Text>{moreInfo.overview}</Card.Text>
+						<Card.Subtitle className="d-flex justify-content-between">
+							<p>Rating</p> 
+							⭐️ {moreInfo.vote_average}
+						</Card.Subtitle>
 
-						<h4>Actors</h4>
+						<h5>Actors</h5>
 						<>
 							{moreInfo.credits.cast.map((actor, i )=> (
 								<div key={i}>
-									<Image thumbnail={true} roundedCircle={true} src={imageUrl + actor.profile_path} / >
-									<Card.Text>{ actor.name }</Card.Text>
+									{/* <Image thumbnail={true} roundedCircle={true} src={imageUrl + actor.profile_path} / > */}
+									<Card.Text 
+										as={Link} 
+										to={`/actor/${actor.id}`}
+										> {actor.name} as {actor.character}
+									</Card.Text>{/* //!Byta ut till Card.Link och href?? */}
 								</div>
 							))}
 
