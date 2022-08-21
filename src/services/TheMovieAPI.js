@@ -25,7 +25,17 @@ const get = async (endpoint) => {
 
 const getPopularMovies = async () => {
 
-    return get(`/3/movie/popular?api_key=${API_KEY}&page=1?include_adult=false`)
+    return get(`/3/movie/popular?api_key=${API_KEY}&page=1&language=en-US?include_adult=false`)
+
+}
+
+/**
+ * Get Latest Movies
+ */
+
+ const getLatestMovies = async () => {
+
+    return get(`/3/movie/now_playing?api_key=${API_KEY}&page=1&language=en-US?include_adult=false`)
 
 }
 
@@ -35,7 +45,17 @@ const getPopularMovies = async () => {
 
  const getTopRatedMovies = async () => {
 
-    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1?include_adult=false`)
+    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1&language=en-US?include_adult=false`)
+
+}
+
+/**
+ * Get Top Rated Movies
+ */
+
+ const getMovieByGenre = async () => {
+
+    return get(`/3/genre/movie/list?api_key=${API_KEY}&language=en-US&include_adult=false`)
 
 }
 
@@ -61,6 +81,8 @@ const getPopularMovies = async () => {
 export default {
     getPopularMovies,
     getTopRatedMovies,
+    getLatestMovies,
+    getMovieByGenre,
     getReadMore,
     getPerson,
 }
