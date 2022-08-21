@@ -53,7 +53,7 @@ const getPopularMovies = async () => {
  * Get Top Rated Movies
  */
 
- const getMovieByGenre = async () => {
+ const getMoviesByGenre = async () => {
 
     return get(`/3/genre/movie/list?api_key=${API_KEY}&language=en-US&include_adult=false`)
 
@@ -82,7 +82,7 @@ export default {
     getPopularMovies,
     getTopRatedMovies,
     getLatestMovies,
-    getMovieByGenre,
+    getMoviesByGenre,
     getReadMore,
     getPerson,
 }
