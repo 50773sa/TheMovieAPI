@@ -4,22 +4,15 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, NavLink } from 'react-router-dom'
 
-const Navigation = () => {
+const GenreNav = () => {
 	return (
 		<Navbar bg="dark" variant="dark" expand="md">
 			<Container>
-				<Navbar.Brand as={NavLink} to="/">Movies</Navbar.Brand>
-
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto">
-						<Nav.Link as={NavLink} end to="/">Home</Nav.Link>
-						<Nav.Link as={NavLink} end to="/latest-movies">Latest Movies</Nav.Link>
-						<Nav.Link as={NavLink} end to="/popular-movies">Popular Movies</Nav.Link>
-						<Nav.Link as={NavLink} end to="/top-rated-movies">Top Rated</Nav.Link>
-						<Nav.Link as={NavLink} end to="/genres">Genres</Nav.Link>
-						
-						{/* <NavDropdown title="Genre" id="navbarScrollingDropdown">
+			
+						<NavDropdown title="Genre" id="navbarScrollingDropdown">
 							<NavDropdown.Item as={NavLink} end to="/genre/action" >Action</NavDropdown.Item>
 							<NavDropdown.Item as={NavLink} end to="/genre/adventure" >Adventure</NavDropdown.Item>
 							<NavDropdown.Item as={NavLink} end to="/genre/animation" >Animation</NavDropdown.Item>
@@ -39,7 +32,7 @@ const Navigation = () => {
 							<NavDropdown.Item as={NavLink} end to="/genre/thriller" >Thriller</NavDropdown.Item>
 							<NavDropdown.Item as={NavLink} end to="/genre/war" >War</NavDropdown.Item>
 							<NavDropdown.Item as={NavLink} end to="/genre/western" >Western</NavDropdown.Item>
-						</NavDropdown> */}
+						</NavDropdown>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
@@ -47,4 +40,4 @@ const Navigation = () => {
 	)
 }
 
-export default Navigation
+export default GenreNav
