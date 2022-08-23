@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { Link } from 'react-router-dom'
 
-
 const Person = ({ person, movies }) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'

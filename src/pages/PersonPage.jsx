@@ -12,7 +12,6 @@ const PersonPage = () => {
     const { id } = useParams() // för att den ska veta vilket id den ska hämta
     const { data: person, error, isError, isLoading, isSuccess } = usePerson(id)
 
-	console.log('More INFO: ', person)
 
   	return (
 		<Container className="py-3">

@@ -11,7 +11,7 @@ import Alert from 'react-bootstrap/Alert'
 const PopularMoviesPage = () => {
     const { data: movies, error, isError, isLoading, isSuccess } = usePopularMovies()
 
-	console.log('POPULAR MOVIES: ', movies)
+	console.log('MOVIES', movies)
 
   	return (
 		<Container className="py-3">
@@ -29,11 +29,7 @@ const PopularMoviesPage = () => {
 			{movies &&  ( 
 				<Movies movies={movies} />	
 			)}
-
-
-		
-
-		
+					
 		</Container> 
 	)
 }

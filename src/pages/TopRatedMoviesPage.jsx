@@ -11,8 +11,6 @@ import Alert from 'react-bootstrap/Alert'
 const TopRatedMoviesPage = () => {
     const { data: movies, error, isError, isLoading, isSuccess } = useTopRatedMovies()
 
-	// console.log('TOP RATED MOVIES: ', movies)
-
   	return (
 		<Container className="py-3">
 			<h1>Top Rates Movies</h1>

@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 const Movies = ({ movies }) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'
+	console.log('MOVIES', movies)
 	
   	return (
 

@@ -9,7 +9,7 @@ import Alert from 'react-bootstrap/Alert'
 
 
 const ReadMorePage = () => {
-    const { id } = useParams() // för att den ska veta vilket id den ska hämta
+	const { id } = useParams() 
     const { data: moreInfo, error, isError, isLoading, isSuccess } = useReadMore(id)
 
 
