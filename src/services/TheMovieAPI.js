@@ -25,7 +25,7 @@ const get = async (endpoint) => {
 
 const getPopularMovies = async () => {
 
-    return get(`/3/movie/popular?api_key=${API_KEY}&page=1&language=en-US?include_adult=false`)
+    return get(`/3/movie/popular?api_key=${API_KEY}&page=1&language=en-US&include_adult=false`)
 
 }
 
@@ -35,7 +35,7 @@ const getPopularMovies = async () => {
 
  const getLatestMovies = async () => {
 
-    return get(`/3/movie/now_playing?api_key=${API_KEY}&page=1&language=en-US?include_adult=false`)
+    return get(`/3/movie/now_playing?api_key=${API_KEY}&page=1&language=en-US&include_adult=false`)
 
 }
 
@@ -45,17 +45,30 @@ const getPopularMovies = async () => {
 
  const getTopRatedMovies = async () => {
 
-    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1&language=en-US?include_adult=false`)
+    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1&language=en-US&include_adult=false`)
 
 }
 
 /**
- * Get Top Rated Movies
+ * Get Genre List   
  */
 
- const getMoviesByGenre = async () => {
+ const getGenreList = async () => {
+    const genre = get(`/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+    console.log('GENRE-LIST FROM API:', genre)
+    return genre
 
-    return get(`/3/genre/movie/list?api_key=${API_KEY}&language=en-US&include_adult=false`)
+}
+
+/**
+ * Get Movies By Genre
+ */
+
+ const getMoviesByGenre = async ({ queryKey }) => {
+    const [_key, {page, genre_id}] = queryKey
+    const genre = get(`/3/discover/movie/?api_key=${API_KEY}&region=US&popularity.desc&page=${page}&with_genres=${genre_id}&include_adult=false`)
+    console.log('GENRE FROM API', genre)
+    return genre
 
 }
 
@@ -82,6 +95,7 @@ export default {
     getPopularMovies,
     getTopRatedMovies,
     getLatestMovies,
+    getGenreList,
     getMoviesByGenre,
     getReadMore,
     getPerson,
