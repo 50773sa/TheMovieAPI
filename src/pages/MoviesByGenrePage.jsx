@@ -10,9 +10,11 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useState } from 'react'
 
 
 const MoviesByGenrePage = () => {
+	const [nameOfGenre, setNameOfGenre] = useState()
 	const [searchParams, setSearchParams] = useSearchParams({ 
 		genre_id: "",
 		page : 1, 
@@ -29,12 +31,15 @@ const MoviesByGenrePage = () => {
 
 	genreList?.genres?.find(genre => {
         if (Number(genre_id) === genre.id) {
+			setNameOfGenre(genre.name)
+
         }
+
 		console.log('Compare id:', genre_id , genre.id)
 
     })
 
-
+console.log(nameOfGenre)
 	
   	return (
 		<Container className="py-3">
