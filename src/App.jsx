@@ -23,7 +23,7 @@ function App() {
 				<Route path="/popular-movies" element={<PopularMovies />} />
 				<Route path="/top-rated-movies" element={<TopRatedMovies />} />
 				<Route path="/latest-movies" element={<LatestMovies />} />
-				<Route path="/movies/genre/:id" element={<MoviesByGenre />} />				
+				<Route path="/genres" element={<MoviesByGenre />} />				
 				<Route path="/movies/:id" element={<ReadMore />} />
 				<Route path="/person/:id" element={<Person />} />
 			</Routes>
