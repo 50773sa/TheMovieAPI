@@ -1,16 +1,14 @@
 import Movies from '../components/Movies'
 import useLatestMovies from '../hooks/useLatestMovies'
 
-
 // styles
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 
-
 const PopularMoviesPage = () => {
     const { data: movies, error, isError, isLoading, isSuccess } = useLatestMovies()
-
+	
   	return (
 		<Container className="py-3">
 			<h1>Latest Movies</h1>
@@ -24,7 +22,7 @@ const PopularMoviesPage = () => {
 				</Alert>)
 			}
 
-			{movies &&  ( 
+			{isSuccess && movies &&  ( 
 				<Movies movies={movies} />	
 			)}
 		</Container> 
