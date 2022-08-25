@@ -2,6 +2,7 @@ import TheMovieAPI from '../services/TheMovieAPI'
 import MoviesByGenre from '../components/MoviesByGenre'
 // import useMoviesByGenre from '../hooks/useMoviesByGenre'
 import useGenreList from '../hooks/useGenreList'
+import Pagination from '../components/Pagination'
 import { useQuery } from 'react-query'
 import { useSearchParams} from 'react-router-dom'
 
@@ -10,37 +11,31 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { useState } from 'react'
 
 
 const MoviesByGenrePage = () => {
-	const [nameOfGenre, setNameOfGenre] = useState()
 	const [searchParams, setSearchParams] = useSearchParams({ 
 		genre_id: "",
 		page : 1, 
 	})
+	let nameOfGenre = ""
 
 	const genre_id = searchParams.get('genre_id') 
-	const page = searchParams.get('page') // ? Number(searchParams.get('page')) : null
+	const page = searchParams.get('page') ? Number(searchParams.get('page')) : null
 
 
     const { data: moviesByGenre, error, isError, isLoading, isSuccess } = useQuery(['genres', {page, genre_id}], TheMovieAPI.getMoviesByGenre)
     const { data: genreList } = useGenreList()
 
-	console.log('From page - genreList: ', genreList)
 
 	genreList?.genres?.find(genre => {
         if (Number(genre_id) === genre.id) {
-			setNameOfGenre(genre.name)
-
+			nameOfGenre = genre.name
         }
-
-		console.log('Compare id:', genre_id , genre.id)
-
     })
 
-console.log(nameOfGenre)
-	
+	console.log(moviesByGenre)
+
   	return (
 		<Container className="py-3">
 
@@ -55,9 +50,9 @@ console.log(nameOfGenre)
 
 			{genreList &&  (
 				<Row>
-					<Dropdown>
-						<Dropdown.Toggle variant="primary" id="dropdown-basic">
-							genre
+					<Dropdown className='mb-3 d-flex justify-content-end'>
+						<Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+							Choose Genre
 						</Dropdown.Toggle>
 
 						<Dropdown.Menu>
@@ -79,6 +74,19 @@ console.log(nameOfGenre)
 			{moviesByGenre && (
 				<MoviesByGenre genreList={genreList} moviesByGenre={moviesByGenre} />
 			)}
+
+			{page &&(
+				<Pagination 
+					page={page}
+					totalPages={moviesByGenre?.total_pages}
+					hasNextPage={page < moviesByGenre?.total_pages}
+					hasPreviousPage={page > 1}
+					onPreviousPage={() => setSearchParams({ genre_id: genre_id, page: page - 1})}
+					onNextPage={() => setSearchParams({ genre_id: genre_id, page: page + 1})}
+					/>
+			)}		
+			
+			
 		</Container> 
 	)
 }
