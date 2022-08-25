@@ -11,30 +11,31 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useEffect, useState } from 'react'
 
 
 const MoviesByGenrePage = () => {
+	const [genreTitle, setGenreTitle] = useState("")
 	const [searchParams, setSearchParams] = useSearchParams({ 
 		genre_id: "",
 		page : 1, 
 	})
-	let nameOfGenre = ""
 
-	const genre_id = searchParams.get('genre_id') 
+	const genre_id = searchParams.get('genre_id') ? Number(searchParams.get('genre_id')) : ""
 	const page = searchParams.get('page') ? Number(searchParams.get('page')) : null
 
 
     const { data: moviesByGenre, error, isError, isLoading, isSuccess } = useQuery(['genres', {page, genre_id}], TheMovieAPI.getMoviesByGenre)
     const { data: genreList } = useGenreList()
 
-
-	genreList?.genres?.find(genre => {
-        if (Number(genre_id) === genre.id) {
-			nameOfGenre = genre.name
-        }
-    })
+	// // is genre.id === genre_id (from URL)
+	// genreList?.genres?.find(genre => {
+    //     if (genre_id === genre.id) {
+    //     }
+    // })
 
 	console.log(moviesByGenre)
+	console.log('GT', genreTitle)
 
   	return (
 		<Container className="py-3">
@@ -49,8 +50,11 @@ const MoviesByGenrePage = () => {
 			}
 
 			{genreList &&  (
+
 				<Row>
-					<Dropdown className='mb-3 d-flex justify-content-end'>
+					<Dropdown className='mb-2 mt-3 d-flex justify-content-between'>
+						<h1>{genreTitle}</h1>
+
 						<Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
 							Choose Genre
 						</Dropdown.Toggle>
@@ -59,10 +63,13 @@ const MoviesByGenrePage = () => {
 							{genreList.genres.map(genre => (
 								<Dropdown.Item 
 									key={genre.id} 
-									onClick={() => {setSearchParams({ 
-										genre_id: genre.id, 
-										page: 1 ,
-									})}}
+									onClick={() => {
+										setSearchParams({ 
+											genre_id: genre.id, 
+											page: 1 ,
+										})
+										setGenreTitle(genre.name)
+									}}
 								> {genre.name}
 								</Dropdown.Item>
 							))}
