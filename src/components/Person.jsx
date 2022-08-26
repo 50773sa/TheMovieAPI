@@ -16,7 +16,7 @@ const Person = ({ person }) => {
 		<Row>
 			<Col lg={6} md={6} sm={6} key={person.id}>
 				<Card className="mb-4">
-					<Card.Img variant="left" src={person.profile_path !== null ? imageUrl + person.profile_path : 'https://via.placeholder.com/500' } />
+					<Card.Img variant="left" src={person.profile_path !== null ? imageUrl + person.profile_path : ""} />
 					<Card.Body>
 						<Card.Title>{person.name}</Card.Title>
 						<Card.Text>{person.biography}</Card.Text>
