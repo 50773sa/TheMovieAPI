@@ -1,25 +1,24 @@
-
-// styles
-import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
+// bootstrap
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 
 
 const ReadMore = ({ moreInfo }) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'
-	
+
+
   	return (
 
 		<Row>
-			<Col lg={6} md={6} sm={6} key={moreInfo.id}>
+			<Col lg={12} md={12} sm={12} key={moreInfo.id}>
 					
 				<Card className="mb-4">
-					<Card.Img variant="top" src={imageUrl + moreInfo.poster_path}/>
+					<Card.Img variant="top" src={moreInfo.poster_path ? imageUrl + moreInfo.poster_path : ""}/>
 					<Card.Body>
 						<Card.Title>{moreInfo.title}</Card.Title>
 						<Card.Text>{moreInfo.tagline}</Card.Text>
@@ -30,21 +29,25 @@ const ReadMore = ({ moreInfo }) => {
 						</Card.Subtitle>
 
 						<Card.Subtitle>Actors</Card.Subtitle>
-
 						<>
-							{moreInfo.credits.cast.map((person, i )=> (
+							{moreInfo.credits.cast.map((person, i ) => (
 								<div key={i}>
-									{/* <Image thumbnail={true} roundedCircle={true} src={imageUrl + actor.profile_path} / > */}
 									<Card.Text 
 										as={Link} 
 										to={`/person/${person.id}`}
 									> 	{person.name} as {person.character}
-									</Card.Text>{/* //!Byta ut till Card.Link och href?? */}
+									</Card.Text>
 								</div>
 							))}
-
 						</>
 					</Card.Body>
+				<Button
+					as={Link} 
+					to={`/movies/${moreInfo.id}/similar-movies`} 
+					variant="primary"
+				>
+					Explore Similar Movies
+				</Button>
 				</Card>
 			</Col>
 		

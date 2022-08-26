@@ -6,16 +6,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
-const MoviesByGenre = ({ moviesByGenre, genreList, genre_id, page , nameOfGenre}) => {
+const MoviesByGenre = ({ moviesByGenre}) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'
 
-    // console.log(genreList.genres.filter(genre => genre.id === genre_id))
 
   	return (
         <Row>
-            <h1>{nameOfGenre}</h1>
-
             {moviesByGenre.results.map(movie => (
                 <Col lg={3} md={4} sm={6} key={movie.id}>
                         

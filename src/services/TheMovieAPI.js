@@ -25,7 +25,7 @@ const get = async (endpoint) => {
 
 const getPopularMovies = async () => {
 
-    return get(`/3/movie/popular?api_key=${API_KEY}&page=1&language=en-US&include_adult=false`)
+    return get(`/3/movie/popular?api_key=${API_KEY}&page=1&language=en-US&region=US`)
 
 }
 
@@ -35,7 +35,7 @@ const getPopularMovies = async () => {
 
  const getLatestMovies = async () => {
 
-    return get(`/3/movie/now_playing?api_key=${API_KEY}&page=1&language=en-US&include_adult=false`)
+    return get(`/3/movie/now_playing?api_key=${API_KEY}&page=1&language=en-US&region=US`)
 
 }
 
@@ -45,7 +45,7 @@ const getPopularMovies = async () => {
 
  const getTopRatedMovies = async () => {
 
-    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1&language=en-US&include_adult=false`)
+    return get(`/3/movie/top_rated?api_key=${API_KEY}&page=1&language=en-US&region=US`)
 
 }
 
@@ -65,8 +65,8 @@ const getPopularMovies = async () => {
  */
 
  const getMoviesByGenre = async ({ queryKey }) => {
-    const [_key, {page, genre_id}] = queryKey
-    const genre = get(`/3/discover/movie/?api_key=${API_KEY}&region=US&popularity.desc&page=${page}&with_genres=${genre_id}&include_adult=false`)
+    const [_key, {page, genreId}] = queryKey
+    const genre = get(`/3/discover/movie/?api_key=${API_KEY}&language=en-US&region=US&popularity.desc&with_genres=${genreId}&page=${page}&include_adult=false`)
     console.log('GENRE FROM API', genre)
     return genre
 
@@ -89,6 +89,8 @@ const getPopularMovies = async () => {
 
     return  get(`/3/person/${personId}?api_key=${API_KEY}&append_to_response=credits`)
 }
+
+
 
 // eslint-disable-next-line 
 export default {
