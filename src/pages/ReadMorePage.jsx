@@ -25,14 +25,10 @@ const ReadMorePage = () => {
 				</Alert>)
 			}
 
-			{moreInfo &&  ( 
+			{isSuccess && moreInfo &&  ( 
 				<ReadMore moreInfo={moreInfo} />	
 			)}
 
-
-		
-
-		
 		</Container> 
 	)
 }

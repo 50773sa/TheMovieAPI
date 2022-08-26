@@ -14,7 +14,7 @@ const Person = ({ person }) => {
 
   	return (
 		<Row>
-			<Col lg={6} md={6} sm={6} key={person.id}>
+			<Col lg={12} md={12} sm={12} key={person.id}>
 				<Card className="mb-4">
 					<Card.Img variant="left" src={person.profile_path !== null ? imageUrl + person.profile_path : ""} />
 					<Card.Body>
