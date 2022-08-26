@@ -41,13 +41,6 @@ const ReadMore = ({ moreInfo }) => {
 							))}
 						</>
 					</Card.Body>
-				<Button
-					as={Link} 
-					to={`/movies/${moreInfo.id}/similar-movies`} 
-					variant="primary"
-				>
-					Explore Similar Movies
-				</Button>
 				</Card>
 			</Col>
 		
