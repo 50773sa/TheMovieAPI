@@ -54,10 +54,9 @@ const getPopularMovies = async () => {
  */
 
  const getGenreList = async () => {
-    const genre = get(`/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
-    console.log('GENRE-LIST FROM API:', genre)
-    return genre
 
+    return get(`/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+  
 }
 
 /**
@@ -65,10 +64,8 @@ const getPopularMovies = async () => {
  */
 
  const getMoviesByGenre = async ({ queryKey }) => {
-    const [_key, {page, genreId}] = queryKey
-    const genre = get(`/3/discover/movie/?api_key=${API_KEY}&language=en-US&region=US&popularity.desc&with_genres=${genreId}&page=${page}&include_adult=false`)
-    console.log('GENRE FROM API', genre)
-    return genre
+    const [_key, {page, genre_id}] = queryKey
+    return get(`/3/discover/movie?api_key=${API_KEY}&language=en-US&region=US&popularity.desc&include_adult=false&page=${page}&with_genres=${genre_id}`)
 
 }
 
