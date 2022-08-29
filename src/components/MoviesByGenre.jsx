@@ -10,6 +10,8 @@ const MoviesByGenre = ({ moviesByGenre}) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'
 
+    console.log(moviesByGenre)
+
   	return (
         <Row>
             {moviesByGenre.results.map(movie => (
@@ -20,6 +22,7 @@ const MoviesByGenre = ({ moviesByGenre}) => {
                         <Card.Body>
                             <Card.Title>{movie.title}</Card.Title>
                             <Card.Text className="d-flex justify-content-between">
+                                ⭐️ {movie.vote_average}
                                 <Button 
                                     as={Link} 
                                     to={`/movies/${movie.id}`} 
