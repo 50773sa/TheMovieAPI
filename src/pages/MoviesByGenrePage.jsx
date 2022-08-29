@@ -37,7 +37,7 @@ const MoviesByGenrePage = () => {
 	 *  Hooks with data from API
 	 */
 
-    const { data: moviesByGenre, error,  isError,  isLoading, isSuccess } = useQuery(['genres', {page, genre_id}], TheMovieAPI.getMoviesByGenre)
+    const { data: moviesByGenre, error,  isError,  isLoading, isSuccess } = useQuery(['genres', {page, genre_id}], TheMovieAPI.getMoviesByGenre, {keepPreviousData: true})
     const { data: genreList } = useGenreList()
 
 

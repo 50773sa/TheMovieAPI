@@ -10,8 +10,6 @@ const MoviesByGenre = ({ moviesByGenre}) => {
 
 	const imageUrl = 'https://image.tmdb.org/t/p/w500'
 
-    console.log(moviesByGenre)
-
   	return (
         <Row>
             {moviesByGenre.results.map(movie => (
