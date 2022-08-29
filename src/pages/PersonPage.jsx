@@ -1,22 +1,22 @@
+import { useParams } from 'react-router-dom'
 import Person from '../components/Person'
 import usePerson from '../hooks/usePerson'
-import { useParams } from 'react-router-dom'
 
-// styles
+// bootstrap
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 
 
 const PersonPage = () => {
-    const { id } = useParams() // för att den ska veta vilket id den ska hämta
+    const { id } = useParams() // actors id
     const { data: person, error, isError, isLoading, isSuccess } = usePerson(id)
 
 
   	return (
 		<Container className="py-3">
 
-			{isLoading && (<p className="my-3">Loading...</p>)}
+			{isLoading && (<p>Loading...</p>)}
 
 			{isError && (
 				<Alert variant="danger">
@@ -25,7 +25,7 @@ const PersonPage = () => {
 				</Alert>)
 			}
 
-			{person &&  ( 
+			{isSuccess &&  ( 
 				<Person person={person} />	
 			)}
             

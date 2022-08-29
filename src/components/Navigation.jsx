@@ -1,7 +1,9 @@
+import { NavLink } from 'react-router-dom'
+
+// bootstrap
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import { NavLink } from 'react-router-dom'
 
 const Navigation = () => {
 	return (
@@ -10,15 +12,14 @@ const Navigation = () => {
 				<Navbar.Brand as={NavLink} to="/">MovieTime</Navbar.Brand>
 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="ms-auto">
-						<Nav.Link as={NavLink} end to="/">Home</Nav.Link>
-						<Nav.Link as={NavLink} end to="/latest-movies">Latest Movies</Nav.Link>
-						{/* <Nav.Link as={NavLink} end to="/popular-movies">Popular Movies</Nav.Link> */}
-						<Nav.Link as={NavLink} end to="/top-rated-movies">Top Rated</Nav.Link>
-						<Nav.Link as={NavLink} end to="/genres">Genres</Nav.Link>
-					</Nav>
-				</Navbar.Collapse>
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="ms-auto">
+							<Nav.Link as={NavLink} end to="/">Home</Nav.Link>
+							<Nav.Link as={NavLink} end to="/latest-movies">Latest Movies</Nav.Link>
+							<Nav.Link as={NavLink} end to="/top-rated-movies">Top Rated</Nav.Link>
+							<Nav.Link as={NavLink} end to="/genres">Genres</Nav.Link>
+						</Nav>
+					</Navbar.Collapse>
 			</Container>
 		</Navbar>
 	)

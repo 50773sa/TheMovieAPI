@@ -1,11 +1,9 @@
 import Movies from '../components/Movies'
 import useTopRatedMovies from '../hooks/useTopRatedMovies'
 
-
-// styles
+// bootstrap
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-
 
 
 const TopRatedMoviesPage = () => {
@@ -13,7 +11,7 @@ const TopRatedMoviesPage = () => {
 
   	return (
 		<Container className="py-3">
-			<h1>Top Rates Movies</h1>
+			<h2>Top Rates Movies</h2>
 
 			{isLoading && (<p className="my-3">Loading Movies...</p>)}
 
@@ -23,9 +21,10 @@ const TopRatedMoviesPage = () => {
 					<p>{error.message}</p>
 				</Alert>)
 			}
-				{movies &&  ( 
-					<Movies movies={movies} />	
-				)}
+
+			{isSuccess &&  ( 
+				<Movies movies={movies} />	
+			)}
 
 
 		

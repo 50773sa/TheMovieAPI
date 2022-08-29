@@ -1,6 +1,7 @@
+import { useParams } from 'react-router-dom'
 import ReadMore from '../components/ReadMore'
 import useReadMore from '../hooks/useReadMore'
-import { useParams } from 'react-router-dom'
+
 // bootstrap
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
@@ -8,7 +9,7 @@ import Alert from 'react-bootstrap/Alert'
 
 
 const ReadMorePage = () => {
-	const { id } = useParams() 
+	const { id } = useParams() // movie id
     const { data: moreInfo, error, isError, isLoading, isSuccess } = useReadMore(id)
 
   	return (

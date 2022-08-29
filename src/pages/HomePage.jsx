@@ -1,23 +1,21 @@
 import Movies from '../components/Movies'
 import usePopularMovies from '../hooks/usePopularMovies'
-
-
-// styles
+// bootstrap
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 
 
 const PopularMoviesPage = () => {
+	// import hook with data from TheMovieApi.js(getPopularMovies)
     const { data: movies, error, isError, isLoading, isSuccess } = usePopularMovies()
 
-	console.log('MOVIES', movies)
 
   	return (
 		<Container className="py-3">
-			<h1>Popular Movies</h1>
+			<h2>Popular Movies</h2>
 
-			{isLoading && (<p className="my-3">Loading Movies...</p>)}
+			{isLoading && (<p>Loading Movies...</p>)}
 
 			{isError && (
 				<Alert variant="danger">
@@ -26,7 +24,7 @@ const PopularMoviesPage = () => {
 				</Alert>)
 			}
 
-			{movies &&  ( 
+			{isSuccess &&  ( 
 				<Movies movies={movies} />	
 			)}
 					

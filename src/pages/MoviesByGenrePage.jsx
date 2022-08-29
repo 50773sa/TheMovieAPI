@@ -1,17 +1,16 @@
 import TheMovieAPI from '../services/TheMovieAPI'
 import MoviesByGenre from '../components/MoviesByGenre'
-// import useMoviesByGenre from '../hooks/useMoviesByGenre'
 import useGenreList from '../hooks/useGenreList'
 import Pagination from '../components/Pagination'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useSearchParams} from 'react-router-dom'
 
-// styles
+// bootstrap
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { useEffect, useState } from 'react'
 
 
 const MoviesByGenrePage = () => {
@@ -21,26 +20,31 @@ const MoviesByGenrePage = () => {
 		page : 1, 
 	})
 
-	const genre_id = searchParams.get('genre_id') ? Number(searchParams.get('genre_id')) : ""
-	const page = searchParams.get('page') ? Number(searchParams.get('page')) : null
+	/**
+	 * GET genre_id & page
+	 */
+
+	const genre_id = searchParams.get('genre_id') // genre_id and page will return as a string unless we convert it to a number
+		? Number(searchParams.get('genre_id')) 
+		: ""
+
+	const page = searchParams.get('page') 
+		? Number(searchParams.get('page')) 
+		: null
 
 
-    const { data: moviesByGenre, error, isError, isLoading, isSuccess } = useQuery(['genres', {page, genre_id}], TheMovieAPI.getMoviesByGenre)
+	/**
+	 *  Hooks with data from API
+	 */
+
+    const { data: moviesByGenre, error,  isError,  isLoading, isSuccess } = useQuery(['genres', {page, genre_id}], TheMovieAPI.getMoviesByGenre)
     const { data: genreList } = useGenreList()
 
-	// // is genre.id === genre_id (from URL)
-	// genreList?.genres?.find(genre => {
-    //     if (genre_id === genre.id) {
-    //     }
-    // })
-
-	console.log(moviesByGenre)
-	console.log('GT', genreTitle)
 
   	return (
 		<Container className="py-3">
 
-			{isLoading && (<p className="my-3">Loading Movies...</p>)}
+			{isLoading && (<p>Loading Movies...</p>)}
 
 			{isError && (
 				<Alert variant="danger">
@@ -50,13 +54,12 @@ const MoviesByGenrePage = () => {
 			}
 
 			{genreList &&  (
-
 				<Row>
 					<Dropdown className='mb-2 mt-3 d-flex justify-content-between'>
-						<h1>{genreTitle}</h1>
+						<h2>{genreTitle}</h2>
 
 						<Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
-							Choose Genre
+							genres 
 						</Dropdown.Toggle>
 
 						<Dropdown.Menu>
@@ -78,21 +81,20 @@ const MoviesByGenrePage = () => {
 				</Row>
 			)}
 
-			{moviesByGenre && (
-				<MoviesByGenre genreList={genreList} moviesByGenre={moviesByGenre} />
-			)}
-
-			{page &&(
-				<Pagination 
-					page={page}
-					totalPages={moviesByGenre?.total_pages}
-					hasNextPage={page < moviesByGenre?.total_pages}
-					hasPreviousPage={page > 1}
-					onPreviousPage={() => setSearchParams({ genre_id: genre_id, page: page - 1})}
-					onNextPage={() => setSearchParams({ genre_id: genre_id, page: page + 1})}
+			{isSuccess && (
+				<>
+					<MoviesByGenre moviesByGenre={moviesByGenre} />
+				
+					<Pagination 
+						page={page}
+						totalPages={moviesByGenre?.total_pages}
+						hasNextPage={page < moviesByGenre?.total_pages}
+						hasPreviousPage={page > 1}
+						onPreviousPage={() => setSearchParams({ genre_id: genre_id, page: page - 1})}
+						onNextPage={() => setSearchParams({ genre_id: genre_id, page: page + 1})}
 					/>
-			)}		
-			
+				</>
+			)}
 			
 		</Container> 
 	)
